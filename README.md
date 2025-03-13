@@ -30,4 +30,4 @@ To set up QuizGenius locally, follow these steps:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/Web3Coders/quizgenius.git
+   git clone https://github.com/MUKTADIR-ALAM/QuizGenius-Frontend.git
