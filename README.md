@@ -4,7 +4,7 @@ QuizGenius is an innovative learning platform that leverages artificial intellig
 
 ## Hero section
 <div align="center">
-   <img width="full" src="https://example.com/images/quizgenius-logo.png"/>
+   <img width="full" src="https://i.ibb.co.com/cBZY4gj/home.png"/>
 </div>
 ## Features
 
