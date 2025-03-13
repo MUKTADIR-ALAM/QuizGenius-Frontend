@@ -1,0 +1,32 @@
+# QuizGenius - AI-Powered Learning Platform
+
+QuizGenius is an innovative learning platform that leverages artificial intelligence to create personalized quizzes, offering adaptive difficulty levels based on user performance. Designed for students, educators, corporate trainers, and lifelong learners, QuizGenius aims to enhance knowledge and skills thr--ough engaging and tailored quiz experiences.
+
+## Hero section
+![Hero section](https://example.com/images/quizgenius-logo.png)
+
+## Features
+
+- **AI-Generated Quizzes:** Dynamically create quizzes using AI to ensure diversity and relevance.
+- **Personalized Questions:** Tailor quizzes to individual users based on their learning progress.
+- **Adaptive Difficulty:** Adjust quiz difficulty levels in real-time based on user performance.
+- **Cryptocurrency Payments:** Allow users to purchase premium features using cryptocurrencies.
+- **PDF to Quiz:** Convert PDFs into interactive quizzes for better learning experiences.
+- **Topic-Based Quizzes:** Enable users to choose quizzes from specific topics or subjects.
+- **Performance Analytics:** Provide detailed analytics and insights on user performance.
+- **Mistake Review Mode:** Allow users to review and learn from their incorrect answers.
+- **Subscription-Based Freemium Model:** Offer both free and premium subscription plans.
+- **Leaderboard:** Encourage competitive learning with ranking-based leaderboards.
+
+## Technologies Used
+
+- **Frontend:** React.js for building user interfaces.
+
+## Installation Guide
+
+To set up QuizGenius locally, follow these steps:
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone https://github.com/Web3Coders/quizgenius.git
