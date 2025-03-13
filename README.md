@@ -3,8 +3,9 @@
 QuizGenius is an innovative learning platform that leverages artificial intelligence to create personalized quizzes, offering adaptive difficulty levels based on user performance. Designed for students, educators, corporate trainers, and lifelong learners, QuizGenius aims to enhance knowledge and skills thr--ough engaging and tailored quiz experiences.
 
 ## Hero section
-![Hero section](https://example.com/images/quizgenius-logo.png)
-
+<div align="center">
+   <img width="full" src="https://example.com/images/quizgenius-logo.png"/>
+</div>
 ## Features
 
 - **AI-Generated Quizzes:** Dynamically create quizzes using AI to ensure diversity and relevance.
