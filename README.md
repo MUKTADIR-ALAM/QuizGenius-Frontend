@@ -4,7 +4,9 @@ QuizGenius is an innovative learning platform that leverages artificial intellig
 
 ## Hero section
 <div align="center">
-   <img width="full" src="https://example.com/images/quizgenius-logo.png"/>
+   <img width="full" src="https://i.ibb.co.com/cBZY4gj/home.png"/>
+   <img width="full" src="https://i.ibb.co.com/N2LDbw17/faq.png"/>
+   
 </div>
 ## Features
 
@@ -30,4 +32,4 @@ To set up QuizGenius locally, follow these steps:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/Web3Coders/quizgenius.git
+   git clone https://github.com/MUKTADIR-ALAM/QuizGenius-Frontend.git
