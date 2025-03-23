@@ -1,13 +1,48 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from '../provider/AuthProvider';
 
 const LoginPage = () => {
+
+  const { logInUser, signInWithGoogle } = useContext(AuthContext);
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    setErrorMessage('');
+    const form = new FormData(e.target);
+    const email = form.get("email");
+    const password = form.get("password");
+    logInUser(email, password)
+    .then((res)=>{navigate(location?.state ? location?.state:'/')})
+    .catch((err)=>{setErrorMessage(err.message)
+      toast.error(err.message);
+    })
+  };
+
+
+  const hadleGoogleLogin = () =>{
+    signInWithGoogle()
+    .then((result) => {
+      navigate(location?.state ? location?.state:'/')
+      toast.success('Successfully login');
+    })
+    .catch((error) => {
+      setErrorMessage(err.message);
+      toast.error(err.message);
+    });
+  }
+
   return (
     <div className="min-h-screen bg-white flex flex-col justify-center items-center">
       <div className="bg-black p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-white text-2xl font-bold mb-6 text-center">Login to Quiz Genious</h2>
-        <form className="space-y-6">
+        <form onSubmit={handleLoginSubmit} className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-300">Email</label>
             <input
@@ -28,6 +63,15 @@ const LoginPage = () => {
               className="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
+
+          <div>
+            {errorMessage && (
+              <p className="text-red-500 font-semibold text-sm text-center">
+                {errorMessage}
+              </p>
+            )}
+          </div>
+
           <div>
             <button
               type="submit"
@@ -35,13 +79,13 @@ const LoginPage = () => {
             >
               Sign In
             </button>
-            <button
-              type="submit"
+            <div
+              onClick={hadleGoogleLogin}
               className="mt-5 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-white hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               <FcGoogle className='mr-2' size={20} />
               Sign In with Google
-            </button>
+            </div>
           </div>
         </form>
         {/* <div className="mt-6 text-center">
