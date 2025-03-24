@@ -15,13 +15,6 @@ const DashboardLayout = () => {
             <p className="text-lg">Welcome to your dashboard</p>
             <button className="btn btn-primary mt-4">Get Started</button>
           </main>
-
-          <label
-            htmlFor="my-drawer-2"
-            className="btn bg-main text-white drawer-button lg:hidden"
-          >
-            <MdMenu />
-          </label>
         </div>
         <div className="drawer-side">
           <label

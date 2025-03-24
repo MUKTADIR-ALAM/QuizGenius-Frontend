@@ -1,15 +1,24 @@
+import { MdMenu } from "react-icons/md";
 import useAuth from "../hooks/useAuth";
 
-
 const DashboardHeader = () => {
-    const { user } = useAuth();
-    return (
-        <header className="sticky top-0 z-50 bg-base-200 shadow-lg">
-            <section className="w-11/12 mx-auto">
-                <h3>Welcome <span>{user?.name}</span></h3>
-            </section>
-        </header>
-    );
+  const { user } = useAuth();
+  return (
+    <header className="py-2 border-b mb-2">
+      <section className="flex items-center justify-between">
+        <h3 className="font-bold text-2xl">
+          Welcome <span>{user?.name}</span>
+        </h3>
+
+        <label
+          htmlFor="my-drawer-2"
+          className="btn bg-main text-white drawer-button lg:hidden"
+        >
+          <MdMenu />
+        </label>
+      </section>
+    </header>
+  );
 };
 
 export default DashboardHeader;
