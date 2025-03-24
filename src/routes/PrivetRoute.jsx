@@ -3,11 +3,11 @@ import useAuth from "../hooks/useAuth";
 
 
 const PrivetRoute = ({children}) => {
-    // const {user} = useAuth();
+    const {user} = useAuth();
 
-    // if(!user){
-    //     return <Navigate to="/login" />
-    // }
+    if(!user){
+        return <Navigate to="/login" />
+    }
 
     return children;
 };
