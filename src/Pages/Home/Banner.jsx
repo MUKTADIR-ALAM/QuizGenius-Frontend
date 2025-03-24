@@ -10,7 +10,7 @@ const Banner = () => {
             Personalized learning journeys crafted by intelligent algorithms to
             elevate your knowledge.
           </p>
-          <button className="buttons">Explore Features</button>
+          <button className="buttons">Explore Quizs</button>
         </div>
       </div>
     </div>
