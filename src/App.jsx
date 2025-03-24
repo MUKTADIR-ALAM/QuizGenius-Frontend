@@ -4,6 +4,7 @@ import Home from "./Pages/Home/Home";
 import LoginPage from './authPage/Login';
 import RegisterPage from './authPage/Register';
 import Pricing from "./Pages/Pricing/Pricing";
+import DashboardLayout from "./Layout/DashboardLayout";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/pricing" element={<Pricing />} />
       </Route>
+      <Route path="/dashboard" element={<DashboardLayout />}></Route>
     </Routes>
   );
 }
