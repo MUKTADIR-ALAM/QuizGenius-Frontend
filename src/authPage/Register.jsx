@@ -153,16 +153,15 @@ const RegisterPage = () => {
             >
               Register
             </button>
-
-            <div
-              onClick={hadleGoogleLogin}
-              className="mt-5 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-white hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              <FcGoogle className="mr-2" size={20} />
-              Sign up with Google
-            </div>
           </div>
         </form>
+        <div
+          onClick={hadleGoogleLogin}
+          className="mt-5 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-white hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        >
+          <FcGoogle className="mr-2" size={20} />
+          Sign up with Google
+        </div>
 
         {/* Link to Login Page */}
         <div className="mt-6 text-center">
