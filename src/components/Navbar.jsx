@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext)
+
+  const handleOut = () => {
+    signOutUser()
+  }
+
   const links = (
     <>
       <li>
@@ -11,7 +18,10 @@ const Navbar = () => {
         <NavLink to="/pricing">Pricing</NavLink>
       </li>
       <li>
-        <NavLink to="/">Dashboard</NavLink>
+        {
+          user && <NavLink to="/dashboard">Dashboard</NavLink>
+        }
+
       </li>
     </>
   );
@@ -27,7 +37,7 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-            
+
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -49,8 +59,12 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end flex gap-3">
-        <Link to={'/login'} className="btn">Sign In</Link>
-        <Link to={'/register'} className="btn">Sign Up</Link>
+        {
+          user ? <button onClick={handleOut} className="btn">Log-Out</button> : <div className="space-x-2">
+            <Link to={'/login'} className="btn">Sign In</Link>
+            <Link to={'/register'} className="btn">Sign Up</Link>
+          </div>
+        }
       </div>
     </div>
   );
