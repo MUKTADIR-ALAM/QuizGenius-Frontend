@@ -19,7 +19,7 @@ export default function AuthProvider({children}) {
 
   const provider = new GoogleAuthProvider();
 
-  const createUserWithemailPass = (email, password) => {
+  const createUserWithEmailPass = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
@@ -37,8 +37,8 @@ export default function AuthProvider({children}) {
     return signOut(auth);
   };
 
-  const updateUserProfile = (upedatedUser) => {
-    return updateProfile(auth.currentUser, upedatedUser);
+  const updateUserProfile = (updatedUser) => {
+    return updateProfile(auth.currentUser, updatedUser);
   };
 
   const forgetPass = (email) => {
@@ -47,17 +47,17 @@ export default function AuthProvider({children}) {
   }
 
   useEffect(() => {
-    const unSubscirbe = onAuthStateChanged(auth, (currentUser) => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
     });
-    return () => unSubscirbe();
+    return () => unSubscribe();
   }, []);
 
   const authInfo = {
     user,
     setUser,
-    createUserWithemailPass,
+    createUserWithEmailPass,
     updateUserProfile,
     logInUser,
     signOutUser,

@@ -21,6 +21,12 @@ const Navbar = () => {
       <li>
         <NavLink to="/">Dashboard</NavLink>
       </li>
+      <li>
+        <NavLink to="/lesson">Lessons</NavLink>
+      </li>
+      <li>
+        <NavLink to="/quiz-page">Create Quizzes</NavLink>
+      </li>
     </>
   );
   return (
@@ -56,38 +62,45 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end flex gap-3">
-        {user ? (<div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src={user?.photoURL}
-              />
+        {user ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+              </div>
             </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a onClick={signOutUser}>Logout</a>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a onClick={signOutUser}>Logout</a>
-            </li>
-          </ul>
-        </div>):(<><Link to={'/login'} className="btn">Sign In</Link>
-        <Link to={'/register'} className="btn">Sign Up</Link></>)}
+        ) : (
+          <>
+            <Link to={"/login"} className="btn">
+              Sign In
+            </Link>
+            <Link to={"/register"} className="btn">
+              Sign Up
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
