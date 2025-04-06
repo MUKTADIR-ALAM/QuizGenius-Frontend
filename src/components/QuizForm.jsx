@@ -138,6 +138,11 @@ const QuizForm = () => {
   const [subTopics, setSubTopics] = useState("");
   const [numOfQuestions, setNumOfQuestions] = useState(0);
   const [levelOfQuestions, setLevelOfQuestions] = useState("beginner");
+  const [isCustomSubject, setIsCustomSubject] = useState(false);
+  const [isCustomTopic, setIsCustomTopic] = useState(false);
+  const [customSubject, setCustomSubject] = useState("");
+  const [customTopic, setCustomTopic] = useState("");
+
   const [formData, setFormData] = useState(null);
 
   const levels = ["beginner", "intermediate", "hard"];
@@ -148,8 +153,8 @@ const QuizForm = () => {
     e.preventDefault();
 
     const newFormData = {
-      selectedSubject,
-      selectedTopic,
+      selectedSubject: isCustomSubject ? customSubject : selectedSubject,
+      selectedTopic: isCustomTopic ? customTopic : selectedTopic,
       subTopics,
       numOfQuestions,
       levelOfQuestions,
@@ -176,11 +181,13 @@ const QuizForm = () => {
           Generate Your AI-Powered Quiz
         </h2>
         <form onSubmit={handleSubmit} className="">
-          <label className="block mb-2">Select Subject:</label>
           <select
             className="w-full p-2 input rounded mb-4"
             value={selectedSubject}
-            onChange={(e) => setSelectedSubject(e.target.value)}
+            onChange={(e) => {
+              setSelectedSubject(e.target.value);
+              setIsCustomSubject(false); // Reset custom subject flag when selecting predefined subject
+            }}
           >
             <option value="">-- Choose Subject --</option>
             {Object.keys(subjects).map((subject) => (
@@ -188,15 +195,28 @@ const QuizForm = () => {
                 {subject}
               </option>
             ))}
+            <option value="custom">-- Add Custom Subject --</option>
           </select>
+          {selectedSubject === "custom" && (
+            <input
+              type="text"
+              placeholder="Enter your custom subject"
+              className="input mb-4 w-full"
+              value={customSubject}
+              onChange={(e) => setCustomSubject(e.target.value)}
+            />
+          )}
 
-          {selectedSubject && (
+          {selectedSubject && selectedSubject !== "custom" && (
             <>
               <label className="block mb-2">Select Topic:</label>
               <select
                 className="w-full p-2 input rounded mb-4"
                 value={selectedTopic}
-                onChange={(e) => setSelectedTopic(e.target.value)}
+                onChange={(e) => {
+                  setSelectedTopic(e.target.value);
+                  setIsCustomTopic(false); 
+                }}
               >
                 <option value="">-- Choose Topic --</option>
                 {subjects[selectedSubject].topics.map((topic) => (
@@ -204,9 +224,22 @@ const QuizForm = () => {
                     {topic}
                   </option>
                 ))}
+                <option disabled={!setCustomTopic} value="custom">-- Add Custom Topic --</option>
               </select>
             </>
           )}
+
+          {selectedTopic === "custom" && (
+            <input
+              type="text"
+              placeholder="Enter your custom topic"
+             
+              className="input mb-4 w-full"
+              value={customTopic}
+              onChange={(e) => setCustomTopic(e.target.value)}
+            />
+          )}
+
           <label className="block mb-2">Write Subtopics:(optional)</label>
           <input
             type="text"

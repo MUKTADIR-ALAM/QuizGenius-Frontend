@@ -5,9 +5,7 @@ import Quizzes from "../../components/Quizzes";
 import { useSelector } from "react-redux";
 
 const QuizPage = () => {
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //   };
+
   const { questions} = useSelector(
     (state) => state.quiz
   );

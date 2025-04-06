@@ -37,7 +37,6 @@ const quizSlice = createSlice({
     },
   },
 });
-console.log(quizSlice.actions.setQuestions)
 
 export const { setQuestions, selectAnswer, nextQuestion, resetQuiz } =
   quizSlice.actions;
