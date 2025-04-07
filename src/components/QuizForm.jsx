@@ -172,9 +172,10 @@ const QuizForm = () => {
     console.log(formData);
   };
 
+
   return (
     <div
-      className={`p-6 my-12 bg-white shadow-lg rounded-lg max-w-md mx-auto `}
+      className={`p-6 my-12 border-1 border-gray-600/70 shadow-lg rounded-lg max-w-md mx-auto `}
     >
       <div>
         <h2 className="text-xl font-semibold mb-4 text-center">

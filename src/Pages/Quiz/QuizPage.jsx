@@ -21,8 +21,8 @@ const QuizPage = () => {
         <>
           <div className="my-16">
             <div className="capitalize text-center ">
-              <h2 className=" heading">Generate Your AI-Powered Quiz</h2>
-              <p className="text-gray-600 text-lg max-w-lg mx-auto">
+              <h2 className="heading">Generate Your AI-Powered Quiz</h2>
+              <p className=" text-lg max-w-lg mx-auto">
                 Select a subject, topic, and a subtopic(optionally) to generate
                 a customized quiz instantly.
               </p>

@@ -11,7 +11,7 @@ const LessonSection = () => {
       {/* Loop through all the lesson plans */}
       {topicsR && topicsR.length > 0 ? (
         topicsR.map((lesson, index) => (
-          <div key={index} className="p-6 bg-white rounded-lg shadow-md">
+          <div key={index} className="p-6 rounded-lg shadow-md">
             {/* Render Lesson Title and Introduction */}
             <h2 className="text-3xl font-bold mb-4 text-gray-800">{lesson.title}</h2>
             <p className="text-lg text-gray-600 mb-4">{lesson.introduction}</p>

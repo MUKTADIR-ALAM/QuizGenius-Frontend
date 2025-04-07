@@ -166,7 +166,7 @@ const EidQuizGame = () => {
 )}
 
       <h2 className="text-xl font-semibold mb-3">
-        <span className="animate-pulse">🎉</span> Eid Quiz Game
+        <span className='animate-pulse duration-200'>🎉</span> Eid Quiz Game <span className="animate-pulse duration-200">🎉</span>
       </h2>
       {!showQuestions ? (
         <button
