@@ -16,7 +16,7 @@ const Quizzes = () => {
   if (!questions.length) return <h2>Loading questions...</h2>;
 
   const currentQuestion = questions[currentQuestionIndex];
-  console.log(questions)
+ 
 
   return (
     <div className="max-w-3xl mx-auto my-12">

@@ -16,6 +16,7 @@ const quizSlice = createSlice({
       state.questions = action.payload;
     },
     selectAnswer: (state, action) => {
+      console.log(state, action)
       const { questionId, selectedOption, isCorrect } = action.payload;
       state.selectedAnswers[questionId] = selectedOption;
       if (isCorrect) {
@@ -35,9 +36,13 @@ const quizSlice = createSlice({
       state.score = 0;
       state.quizCompleted = false;
     },
+    // showAnswer:(state, action)=>{
+    //   const { questionId, selectedOption, isCorrect } = action.payload;
+      
+     
+    // }
   },
 });
-console.log(quizSlice.actions.setQuestions)
 
 export const { setQuestions, selectAnswer, nextQuestion, resetQuiz } =
   quizSlice.actions;

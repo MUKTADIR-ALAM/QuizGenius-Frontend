@@ -3,34 +3,65 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+
+
 body {
   font-family: "Inter", sans-serif;
 }
+
+:root {
+  --bg: #ffffff;
+  --text: #191918;
+  --primary: #4f46e5;
+  --p: #4b5563;
+}
+[data-theme="dark"] {
+  --bg: #191918;
+  --text: #ffffff;
+  --primary: #818cf8;
+  --: #4b5563;
+}
+
 /* Hide scrollbar in webkit-based browsers (Chrome, Safari, Edge) */
 .select-sub::-webkit-scrollbar {
   display: none;
 }
 /* Hide scrollbar in Firefox */
-.select-sub{
-  scrollbar-width: none; 
+.select-sub {
+  scrollbar-width: none;
 }
 /* Ensure other browsers (IE/Edge) don't show scrollbar */
 .select-sub {
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
 }
 
+@keyframes fadeScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-scale {
+  animation: fadeScale 1.5s ease-out forwards;
+}
 
 @theme {
   --color-main: #1abc9c;
   --color-second: #2980b9;
-  --color-black:#191918;
+  --color-black: #191918;
 }
 
-.buttons{
+.buttons {
   @apply btn bg-[#191918] text-white;
 }
-.heading{
-
-  @apply text-[--color-black] font-bold text-2xl md:text-3xl lg:text-4xl ;
+.heading {
+  @apply text-[--color-black] font-bold text-2xl md:text-3xl lg:text-4xl;
 }
-
+p {
+  color: var(--p);
+}
