@@ -8,6 +8,12 @@ import AboutUs from "./Pages/About us/AboutUs";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Create a client
+import ContactUs from "./Pages/Contact us/ContactUs";
+
+import LessonPage from "./Pages/Lesson/LessonPage";
+import QuizPage from "./Pages/Quiz/QuizPage";
+import LessonDetails from "./Pages/LessonDetails/LessonDetails";
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -20,6 +26,10 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/lesson" element={<LessonPage />} />
+          <Route path="/lesson/:id" element={<LessonDetails />} />
+          <Route path="/quiz-page" element={<QuizPage />} />
         </Route>
       </Routes>
     </QueryClientProvider>

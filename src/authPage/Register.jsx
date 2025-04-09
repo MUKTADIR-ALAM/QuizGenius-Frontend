@@ -6,19 +6,20 @@ import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const {
-    createUserWithemailPass,
+    createUserWithEmailPass,
     setUser,
     updateUserProfile,
     signInWithGoogle,
   } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
+
   const hadleGoogleLogin = () => {
     signInWithGoogle()
       .then((result) => {
         navigate(location?.state ? location?.state : "/");
         toast.success("Successfully Registerd!");
       })
-      .catch((error) => {
+      .catch((err) => {
         setErrorMessage(err.message);
         toast.error(err.message);
       });
@@ -42,7 +43,7 @@ const RegisterPage = () => {
       toast.error("chose strong password");
       return;
     }
-    createUserWithemailPass(email, password)
+    createUserWithEmailPass(email, password)
       .then((res) => {
         setUser(res.user);
         updateUserProfile({ displayName: name, photoURL: photoUrl })
@@ -61,7 +62,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-center items-center">
+    <div className="min-h-screen  flex flex-col justify-center items-center">
       <div className="bg-black p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-white text-2xl font-bold mb-6 text-center">
           Create Your Account
