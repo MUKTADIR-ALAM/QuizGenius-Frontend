@@ -1,23 +1,30 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router";
+import { FaAnglesRight } from "react-icons/fa6";
 const LessonSection = () => {
-  // Fetching the lessons data from Redux state
   const { topicsR } = useSelector((state) => state.lessons);
-  console.log(topicsR);
+  console.log(topicsR)
 
   return (
-    <div className="lesson-sections space-y-6">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 justify-center items-start w-full p-6">
       {/* Loop through all the lesson plans */}
       {topicsR && topicsR.length > 0 ? (
         topicsR.map((lesson, index) => (
-          <div key={index} className="p-6 rounded-lg shadow-md">
+          <div
+            key={index}
+            className="p-6 rounded-lg shadow-md md:w-[20rem] lg:w-86  md:h-[23rem] lg:h-96 flex flex-col justify-around bg-gray-100"
+          >
             {/* Render Lesson Title and Introduction */}
-            <h2 className="text-3xl font-bold mb-4 text-gray-800">{lesson.title}</h2>
-            <p className="text-lg text-gray-600 mb-4">{lesson.introduction}</p>
+            <h2 className="text-xl font-bold mb-4 text-gray-800">
+              {lesson.title}
+            </h2>
+            <p className="text-lg text-gray-600 mb-4">
+              {lesson.introduction.slice(0, 130)}...
+            </p>
 
             {/* Render Objectives */}
-            <h3 className="text-xl font-semibold text-gray-700">Objectives:</h3>
+            {/* <h3 className="text-xl font-semibold text-gray-700">Objectives:</h3>
             <ul className="list-disc list-inside mb-4 text-gray-600">
               {lesson.objectives && lesson.objectives.length > 0 ? (
                 lesson.objectives.map((obj, i) => (
@@ -26,10 +33,10 @@ const LessonSection = () => {
               ) : (
                 <p>No objectives available.</p>
               )}
-            </ul>
+            </ul> */}
 
             {/* Render Sections */}
-            {lesson.sections && lesson.sections.length > 0 ? (
+            {/* {lesson.sections && lesson.sections.length > 0 ? (
               lesson.sections.map((section, secIndex) => (
                 <div
                   key={secIndex}
@@ -40,7 +47,7 @@ const LessonSection = () => {
                   </h4>
                   <p className="text-gray-600">{section.content}</p>
 
-                  {/* Render Subsections if they exist */}
+                
                   {section.subSections && section.subSections.length > 0 ? (
                     <ul className="list-disc list-inside mt-4">
                       {section.subSections.map((subSection, subIndex) => (
@@ -56,11 +63,14 @@ const LessonSection = () => {
               ))
             ) : (
               <p>No sections available.</p>
-            )}
+            )} */}
 
-            {/* Render Conclusion */}
-            <h3 className="text-xl font-semibold text-gray-700 mt-4">Conclusion:</h3>
-            <p className="text-gray-600">{lesson.conclusion}</p>
+            {/* <h3 className="text-xl font-semibold text-gray-700 mt-4">Conclusion:</h3>
+            <p className="text-gray-600">{lesson.conclusion}</p> */}
+
+            <Link to={`/lesson/${lesson._id}`} className="flex justify-center items-center gap-2 hover:text-xl">
+              <span className="text-lg font-semibold">Show more</span> <FaAnglesRight />
+            </Link>
           </div>
         ))
       ) : (
