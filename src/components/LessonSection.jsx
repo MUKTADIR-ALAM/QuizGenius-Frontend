@@ -68,7 +68,7 @@ const LessonSection = () => {
             {/* <h3 className="text-xl font-semibold text-gray-700 mt-4">Conclusion:</h3>
             <p className="text-gray-600">{lesson.conclusion}</p> */}
 
-            <Link to={`lesson/${lesson._id}`} className="flex justify-center items-center gap-2 hover:text-xl">
+            <Link to={`/lesson/${lesson._id}`} className="flex justify-center items-center gap-2 hover:text-xl">
               <span className="text-lg font-semibold">Show more</span> <FaAnglesRight />
             </Link>
           </div>
