@@ -9,7 +9,6 @@ const lessonSlice = createSlice({
   initialState,
   reducers: {
     setLessons: (state, action) => {
-      // Corrected the assignment
       state.topicsR = action.payload;
     },
     addLesson(state, action) {

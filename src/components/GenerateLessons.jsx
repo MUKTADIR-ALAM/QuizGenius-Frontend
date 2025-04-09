@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  
   FaBalanceScale,
   FaBook,
   FaBrain,
@@ -15,16 +14,15 @@ import {
   FaWrench,
 } from "react-icons/fa";
 import { PiMathOperationsBold } from "react-icons/pi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLessons } from "../redux/LessonSlice";
 import axios from "axios";
-import LessonSection from "./LessonSection";
 
 const GenerateLessons = () => {
   const [selectedSubject, setSelectedSubject] = useState("");
   const [topics, setTopics] = useState("");
   const [subTopics, setSubTopics] = useState("");
-//   const [formData, setFormData] = useState(null);
+  //   const [formData, setFormData] = useState(null);
   const [levelOfQuestions, setLevelOfQuestions] = useState("beginner");
   const levels = ["beginner", "intermediate", "hard"];
   const dispatch = useDispatch();
@@ -141,10 +139,9 @@ const GenerateLessons = () => {
       icon: <FaGavel />,
     },
   };
-  const { topicsR } = useSelector((state) => state.lessons);
 
   useEffect(() => {
-    // Fetch lessons when the component mounts
+   
     const fetchLessons = async () => {
       try {
         const res = await axios.get("http://localhost:5000/lessons");
@@ -158,26 +155,27 @@ const GenerateLessons = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const newFormData = {
       selectedSubject,
       topics,
       subTopics,
       levelOfQuestions,
     };
-  
+
     try {
-      const response = await axios.post("http://localhost:5000/lessons", newFormData);
+      const response = await axios.post(
+        "http://localhost:5000/lessons",
+        newFormData
+      );
       console.log("Lesson generated:", response.data);
     } catch (error) {
       console.error("Error fetching lessons:", error);
     }
   };
-  
 
   return (
     <div className="p-6 my-12 bg-white shadow-lg rounded-lg max-w-md mx-auto">
-      {topicsR && <LessonSection />}
       <div>
         <h2 className="text-xl font-semibold mb-4 text-center">
           Generate Your AI-Powered Lessons
