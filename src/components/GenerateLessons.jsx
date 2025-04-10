@@ -27,7 +27,7 @@ const GenerateLessons = () => {
   const levels = ["beginner", "intermediate", "hard"];
   const dispatch = useDispatch();
   const subjects = {
-    Math: {
+    Mathematics: {
       topics: [
         "Algebra",
         "Geometry",

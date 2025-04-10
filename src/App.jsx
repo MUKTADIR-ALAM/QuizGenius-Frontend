@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import LessonPage from "./Pages/Lesson/LessonPage";
 import QuizPage from "./Pages/Quiz/QuizPage";
 import LessonDetails from "./Pages/LessonDetails/LessonDetails";
+import Quizzes from "./components/Quizzes";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/lesson" element={<LessonPage />} />
           <Route path="/lesson/:id" element={<LessonDetails />} />
           <Route path="/quiz-page" element={<QuizPage />} />
+          <Route path="/give-quiz" element={<Quizzes />} />
         </Route>
       </Routes>
     </QueryClientProvider>

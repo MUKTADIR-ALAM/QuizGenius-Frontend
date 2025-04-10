@@ -38,8 +38,6 @@ const quizSlice = createSlice({
     },
     // showAnswer:(state, action)=>{
     //   const { questionId, selectedOption, isCorrect } = action.payload;
-      
-     
     // }
   },
 });

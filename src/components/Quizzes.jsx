@@ -8,7 +8,7 @@ const Quizzes = () => {
     (state) => state.quiz
   );
  
-
+console.log(questions)
   if (quizCompleted) {
     return <h2>Quiz Completed! 🎉 Your Score: {score}</h2>;
   }
