@@ -56,7 +56,7 @@ export default function AboutUs() {
                   { name: "Jordan Luxe", role: "Designer", bio: "Crafted the minimalist, luxe aesthetic." },
                 ].map((member, index) => (
                   <div key={index} className="bg-black text-white bg-opacity-5 p-6 rounded-lg hover:bg-opacity-10 transition">
-                    <div className="w-20 h-20 bg-white bg-opacity-20 rounded-full mb-4"><img className='rounded-full' src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" alt="" /></div>
+                    <div className="w-20 h-20 rounded-full mb-4"><img className='rounded-full' src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" alt="" /></div>
                     <h3 className="text-xl font-bold">{member.name}</h3>
                     <p className="text-gray-400 mb-3">{member.role}</p>
                     <p className="opacity-90">{member.bio}</p>
