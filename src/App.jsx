@@ -31,7 +31,6 @@ function App() {
           <Route path="/lesson" element={<LessonPage />} />
           <Route path="/lesson/:id" element={<LessonDetails />} />
           <Route path="/quiz-page" element={<QuizPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </QueryClientProvider>

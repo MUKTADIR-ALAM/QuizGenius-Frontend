@@ -7,7 +7,7 @@ import { toggleTheme } from "../redux/themeSlice";
 const ThemeToggle = () => {
   const mode = useSelector((state) => state.theme.mode);
   const dispatch = useDispatch();
-  console.log(dispatch);
+  
   React.useEffect(() => {
     document.body.setAttribute("data-theme", mode);
   }, [mode]);
