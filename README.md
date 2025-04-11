@@ -3,8 +3,11 @@
 QuizGenius is an innovative learning platform that leverages artificial intelligence to create personalized quizzes, offering adaptive difficulty levels based on user performance. Designed for students, educators, corporate trainers, and lifelong learners, QuizGenius aims to enhance knowledge and skills thr--ough engaging and tailored quiz experiences.
 
 ## Hero section
+
 <div align="center">
    <img width="full" src="https://i.ibb.co.com/cBZY4gj/home.png"/>
+   <img width="full" src="https://i.ibb.co.com/N2LDbw17/faq.png"/>
+   
 </div>
 ## Features
 
@@ -31,3 +34,12 @@ To set up QuizGenius locally, follow these steps:
 
    ```bash
    git clone https://github.com/MUKTADIR-ALAM/QuizGenius-Frontend.git
+   ```
+
+2. **env file :**
+
+   ```bash
+   GEMINI_API=************
+   DB_USER=***************
+   DB_PASS=***************
+   ```
