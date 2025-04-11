@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   topicsR: [],
+  selectedSubject: "",
+  selectedTopic: "",
 };
 
 const lessonSlice = createSlice({
@@ -38,6 +40,12 @@ const lessonSlice = createSlice({
           topic.lessons[lessonIndex] = updatedLesson;
         }
       }
+    },
+    setSelectedSubject: (state, action) => {
+      state.selectedSubject = action.payload;
+    },
+    setSelectedTopic: (state, action) => {
+      state.selectedTopic = action.payload;
     },
   },
 });

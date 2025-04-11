@@ -179,7 +179,7 @@ const SelectSub = () => {
   );
   useEffect(() => {
     if (Lessons) {
-      dispatch(setLessons(Lessons)); // This ensures the lessons are stored in the Redux store
+      dispatch(setLessons(Lessons.result));
     }
   }, [Lessons, dispatch]);
 
