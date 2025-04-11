@@ -144,7 +144,7 @@ const GenerateLessons = () => {
    
     const fetchLessons = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/lessons");
+        const res = await axios.get("https://quiz-genius-backend.vercel.app/lessons");
         dispatch(setLessons(res.data));
       } catch (error) {
         console.error("Error fetching lessons:", error);
@@ -165,7 +165,7 @@ const GenerateLessons = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/lessons",
+        "https://quiz-genius-backend.vercel.app/lessons",
         newFormData
       );
       console.log("Lesson generated:", response.data);
