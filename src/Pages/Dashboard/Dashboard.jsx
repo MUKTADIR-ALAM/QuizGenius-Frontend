@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router';
 
 export default function Dashboard() {
 
@@ -87,9 +88,9 @@ export default function Dashboard() {
                   <span className="font-bold">{userProfile.lastActive}</span>
                 </div>
               </div>
-              <button className="btn btn-outline btn-sm mt-6 w-full border-black">
+              <Link to='/edit-profile' className="btn btn-outline btn-sm mt-6 w-full border-black">
                 Edit Profile
-              </button>
+              </Link>
             </div>
 
             {/* Plan Upgrade Card */}
