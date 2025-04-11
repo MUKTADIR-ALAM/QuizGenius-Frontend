@@ -169,7 +169,7 @@ const QuizForm = () => {
     } catch (error) {
       console.error("Error fetching quiz questions:", error);
     }
-    console.log(formData);
+  
   };
 
 

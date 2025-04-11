@@ -8,34 +8,35 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 const LoginPage = () => {
-  const { logInUser, signInWithGoogle } = useContext(AuthContext);
+  const { logInUser, signInWithGoogle,lockError } = useContext(AuthContext);
 
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleLoginSubmit = async(e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage("");
     const form = new FormData(e.target);
     const email = form.get("email");
     const password = form.get("password");
+  
     try {
       const result = await logInUser(email, password);
-      toast.success("Successfully login");
+      toast.success("Successfully logged in!");
     } catch (error) {
-
-      if (error.message.includes("locked")) {
+    
+      if (error.type === "locked") {
         toast.error(error.message);
-        console.error(error.message);
-      } else {
         
+      } else {
         toast.error("Login failed. Please check your credentials.");
-        console.error("Login failed. Please check your credentials.");
+        
       }
     }
   };
+  
 
   const handleGoogleLogin = () => {
     signInWithGoogle()
