@@ -7,11 +7,15 @@ const EditProfile = () => {
     quizzesContributed: 24,
     lastActive: "2 hours ago",
   };
+
+  const handleUpdateProfile = e => {
+    e.preventDefault();
+  }
   return (
     <section className="w-11/12 max-w-lg mx-auto py-12">
       <h3 className="font-bold text-2xl">Edit Profile</h3>
 
-      <div className="mt-6">
+      <form onSubmit={handleUpdateProfile} className="mt-6">
         <div className="flex gap-2">
           <div className="w-full">
             <input
@@ -42,8 +46,8 @@ const EditProfile = () => {
           />
         </div>
 
-        <button className="btn mt-4 btn-primary">Save and Continue</button>
-      </div>
+        <button type="submit" className="btn mt-4 btn-primary">Save and Continue</button>
+      </form>
     </section>
   );
 };
