@@ -1,4 +1,3 @@
-// hooks/useAllLessons.js
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
@@ -36,7 +35,7 @@ const useAllLessons = (
           itemsPerPage };
 
       const res = await axiosPublic.get(url, { params });
-      console.log(res.data);
+    
       return res.data;
     },
   });

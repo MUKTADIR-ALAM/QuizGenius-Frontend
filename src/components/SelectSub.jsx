@@ -191,8 +191,6 @@ const SelectSub = () => {
     }
   }, [Lessons, dispatch]);
 
-  console.log(Lessons);
-
   return (
     <div>
       <div className="my-12">

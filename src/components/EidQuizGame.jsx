@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 
-// Full question bank
 const allQuestions = [
   {
     question:
@@ -143,7 +142,6 @@ const allQuestions = [
   },
 ];
 
-// Function to shuffle the questions and get 5 random ones
 const getRandomQuestions = () => {
   const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, 5);
@@ -184,8 +182,6 @@ const EidQuizGame = () => {
       setTimeout(() => setShowFireworks(false), 5000);
     }
   };
-  console.log(score)
-
   return (
     <div className="text-center flex z-[10000] flex-col justify-center items-center pt-4">
       {showFireworks &&  (

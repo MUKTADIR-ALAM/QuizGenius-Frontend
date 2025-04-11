@@ -19,11 +19,11 @@ import { setLessons } from "../redux/LessonSlice";
 import axios from "axios";
 import useAllLessons from "../CustomHook/useAllLessons";
 
+
 const GenerateLessons = () => {
   const [selectedSubject, setSelectedSubject] = useState("");
   const [topics, setTopics] = useState("");
   const [subTopics, setSubTopics] = useState("");
-  //   const [formData, setFormData] = useState(null);
   const [levelOfQuestions, setLevelOfQuestions] = useState("beginner");
   const levels = ["beginner", "intermediate", "hard"];
   const dispatch = useDispatch();
@@ -141,8 +141,7 @@ const GenerateLessons = () => {
     },
   };
 
- // Inside your component
-const { Lessons, isLoading, isError } = useAllLessons();
+const { Lessons } = useAllLessons();
 
 useEffect(() => {
   if (Lessons) {
@@ -165,7 +164,17 @@ useEffect(() => {
         "http://localhost:5000/lessons",
         newFormData
       );
-      console.log("Lesson generated:", response.data);
+      if(response){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        return
+      }
+     
     } catch (error) {
       console.error("Error fetching lessons:", error);
     }

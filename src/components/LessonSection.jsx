@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { FaAnglesRight } from "react-icons/fa6";
 import { setLessons } from "../redux/LessonSlice";
 import useAllLessons from "../CustomHook/useAllLessons";
+import Loader from "./Loader";
 const LessonSection = () => {
   const dispatch = useDispatch();
   const { topicsR, selectedSubject, selectedTopic } = useSelector(
@@ -13,7 +14,7 @@ const LessonSection = () => {
   const [itemsPerPage] = useState(8);
   const subject = selectedSubject || "";
   const topic = selectedTopic || "";
-  const { Lessons, isLoading, isError } = useAllLessons(
+  const { Lessons, isLoading } = useAllLessons(
     subject,
     topic,
     currentPage,
@@ -26,16 +27,13 @@ const LessonSection = () => {
     }
   }, [Lessons, dispatch, isLoading]);
   
- 
-  console.log(Lessons);
-  console.log(topicsR);
   const numberOfPages = Math.ceil(Lessons?.count / itemsPerPage) || 8;
 
   return (
     <div className="flex flex-col justify-center ">
       <div className="grid justify-center items-center lg:max-w-7xl mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6  p-6 ">
       {isLoading ? (
-          <h2 className="text-center text-lg font-semibold col-span-full">Loading...</h2>
+          <h2 className="text-center text-lg font-semibold col-span-full"><Loader></Loader></h2>
         ) : topicsR && topicsR.length > 0 ? (
           topicsR.map((lesson, index) => (
             <div
