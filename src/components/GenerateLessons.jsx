@@ -17,6 +17,7 @@ import { PiMathOperationsBold } from "react-icons/pi";
 import { useDispatch } from "react-redux";
 import { setLessons } from "../redux/LessonSlice";
 import axios from "axios";
+import useAllLessons from "../CustomHook/useAllLessons";
 
 const GenerateLessons = () => {
   const [selectedSubject, setSelectedSubject] = useState("");
@@ -140,22 +141,18 @@ const GenerateLessons = () => {
     },
   };
 
-  useEffect(() => {
-   
-    const fetchLessons = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/lessons");
-        dispatch(setLessons(res.data));
-      } catch (error) {
-        console.error("Error fetching lessons:", error);
-      }
-    };
-    fetchLessons();
-  }, [dispatch]);
+ // Inside your component
+const { Lessons, isLoading, isError } = useAllLessons();
+
+useEffect(() => {
+  if (Lessons) {
+    dispatch(setLessons(Lessons)); 
+  }
+}, [Lessons, dispatch]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newFormData = {
       selectedSubject,
       topics,

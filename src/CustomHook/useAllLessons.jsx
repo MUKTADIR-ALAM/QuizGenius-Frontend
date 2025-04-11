@@ -1,26 +1,29 @@
+// hooks/useAllLessons.js
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
 const useAllLessons = (selectedSubject, selectedTopic) => {
   const axiosPublic = useAxiosPublic();
+
+  const isFiltered = !!selectedSubject || !!selectedTopic;
+  const url = isFiltered ? "/lessons-query" : "/lessons";
+
   const {
     data: Lessons,
     isLoading,
     isError,
   } = useQuery({
     queryKey: ["lessons", selectedSubject, selectedTopic],
-    enabled: !!selectedTopic || !!selectedSubject,
+    enabled: !!selectedSubject || !!selectedTopic || !selectedSubject,
     staleTime: 0,
-    cacheTime: 0, 
+    cacheTime: 0,
     queryFn: async () => {
-      console.log("Fetching lessons for:", selectedSubject, selectedTopic);
-      const res = await axiosPublic.get("/lessons-query", {
-        params: {
-          selectedSubject,
-          selectedTopic,
-        },
-      });
-      console.log(res)
+      const params = isFiltered
+        ? { selectedSubject, selectedTopic }
+        : undefined;
+
+      const res = await axiosPublic.get(url, { params });
+      console.log(res.data)
       return res.data;
     },
   });

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router";
 import { FaAnglesRight } from "react-icons/fa6";
 const LessonSection = () => {
+  
   const { topicsR } = useSelector((state) => state.lessons);
   console.log(topicsR);
 

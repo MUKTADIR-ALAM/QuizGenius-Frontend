@@ -17,10 +17,13 @@ import {
 } from "react-icons/fa";
 import { PiMathOperationsBold } from "react-icons/pi";
 import useAllLessons from "../CustomHook/useAllLessons";
+import { setLessons } from "../redux/LessonSlice";
+import { useDispatch } from "react-redux";
 
 const SelectSub = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [selectedTopic, setSelectedTopic] = useState(null);
+  const dispatch = useDispatch();
   const subjectsContainerRef = useRef(null);
   const subjects = {
     Mathematics: {
@@ -138,7 +141,7 @@ const SelectSub = () => {
 
   const scrollSubjects = (direction) => {
     if (subjectsContainerRef.current) {
-      const scrollAmount = direction === "left" ? -200 : 200;
+      const scrollAmount = direction === "left" ? -300 : 300;
       const start = subjectsContainerRef.current.scrollLeft;
       const end = start + scrollAmount;
       const duration = 500;
@@ -170,12 +173,17 @@ const SelectSub = () => {
     setSelectedTopic("");
   }, [selectedSubject]);
 
-  const { data, isLoading } = useAllLessons(selectedSubject, selectedTopic); 
+  const { Lessons, isLoading, isError } = useAllLessons(
+    selectedSubject,
+    selectedTopic
+  );
+  useEffect(() => {
+    if (Lessons) {
+      dispatch(setLessons(Lessons)); // This ensures the lessons are stored in the Redux store
+    }
+  }, [Lessons, dispatch]);
 
-  console.log("Selected data", data);
-
-
-
+  console.log(Lessons);
 
   return (
     <div>

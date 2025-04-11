@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import useAxiosPublic from "./../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../CustomHook/useAxiosPublic";
 
 export default function Pricing() {
   const axiosPublic = useAxiosPublic();
