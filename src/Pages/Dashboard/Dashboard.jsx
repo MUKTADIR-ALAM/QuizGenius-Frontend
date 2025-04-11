@@ -82,7 +82,7 @@ export default function Dashboard() {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="">Quizzes Contributed</span>
+                  <span className="">Quizzes Created</span>
                   <span className="font-bold">{userProfile.quizzesContributed}</span>
                 </div>
                 <div className="flex justify-between">
@@ -162,9 +162,9 @@ export default function Dashboard() {
                 <p className="text-gray-400 mb-4">
                   Dive deep into your quiz statistics.
                 </p>
-                <button className="btn btn-block bg-transparent border-black">
-                  View Analytics
-                </button>
+                <NavLink to={'/leaderboard'} className="btn btn-block bg-transparent border-black">
+                  View Leaderboard
+                </NavLink>
               </div>
             </div>
           </div>
