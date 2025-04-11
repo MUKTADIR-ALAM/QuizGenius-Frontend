@@ -3,14 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
 const useAllLessons = (
-  selectedSubject="",
-  selectedTopic="",
-  currentPage=1,
-  itemsPerPage=6
+  subject="",
+  topic="",
+  currentPage=0,
+  itemsPerPage=8
 ) => {
   const axiosPublic = useAxiosPublic();
 
-  const isFiltered = !!selectedSubject || !!selectedTopic;
+  const isFiltered = !!subject || !!topic;
   const url = isFiltered ? "/lessons-query" : "/lessons";
 
   const {
@@ -20,17 +20,17 @@ const useAllLessons = (
   } = useQuery({
     queryKey: [
       "lessons",
-      selectedSubject,
-      selectedTopic,
+      subject,
+    topic,
       currentPage,
       itemsPerPage,
     ],
-    enabled: !!selectedSubject || !!selectedTopic || !selectedSubject,
+    enabled: !!subject || !!topic || !subject,
     staleTime: 0,
     cacheTime: 0,
     queryFn: async () => {
       const params = isFiltered
-        ? { selectedSubject, selectedTopic, currentPage,
+        ? { subject, topic, currentPage,
           itemsPerPage }
         : { currentPage,
           itemsPerPage };

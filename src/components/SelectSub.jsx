@@ -173,13 +173,21 @@ const SelectSub = () => {
     setSelectedTopic("");
   }, [selectedSubject]);
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage] = useState(8);
+
+  const subject = selectedSubject || '';
+  const topic = selectedTopic || '';
   const { Lessons, isLoading, isError } = useAllLessons(
-    selectedSubject,
-    selectedTopic
+    subject,
+    topic,
+    currentPage,
+    itemsPerPage
   );
+  
   useEffect(() => {
     if (Lessons) {
-      dispatch(setLessons(Lessons.result));
+      dispatch(setLessons(Lessons.result || []));
     }
   }, [Lessons, dispatch]);
 

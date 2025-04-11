@@ -146,7 +146,7 @@ const { Lessons, isLoading, isError } = useAllLessons();
 
 useEffect(() => {
   if (Lessons) {
-    dispatch(setLessons(Lessons)); 
+    dispatch(setLessons(Lessons.result)); 
   }
 }, [Lessons, dispatch]);
 
