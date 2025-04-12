@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FaAngleLeft,
   FaAngleRight,
@@ -16,12 +16,17 @@ import {
   FaWrench,
 } from "react-icons/fa";
 import { PiMathOperationsBold } from "react-icons/pi";
+import useAllLessons from "../CustomHook/useAllLessons";
+import { setLessons } from "../redux/LessonSlice";
+import { useDispatch } from "react-redux";
 
 const SelectSub = () => {
   const [selectedSubject, setSelectedSubject] = useState(null);
+  const [selectedTopic, setSelectedTopic] = useState(null);
+  const dispatch = useDispatch();
   const subjectsContainerRef = useRef(null);
   const subjects = {
-    Math: {
+    Mathematics: {
       topics: [
         "Algebra",
         "Geometry",
@@ -113,30 +118,30 @@ const SelectSub = () => {
       icon: <FaPalette />,
     },
     Engineering: {
-        topics: [
-          "Mechanical Engineering",
-          "Electrical Engineering",
-          "Civil Engineering",
-          "Software Engineering",
-          "Biomedical Engineering",
-        ],
-        icon: <FaWrench />,
-      },
-      Law: {
-        topics: [
-          "Criminal Law",
-          "Civil Law",
-          "Constitutional Law",
-          "International Law",
-          "Corporate Law",
-        ],
-        icon: <FaGavel />,
-      },
+      topics: [
+        "Mechanical Engineering",
+        "Electrical Engineering",
+        "Civil Engineering",
+        "Software Engineering",
+        "Biomedical Engineering",
+      ],
+      icon: <FaWrench />,
+    },
+    Law: {
+      topics: [
+        "Criminal Law",
+        "Civil Law",
+        "Constitutional Law",
+        "International Law",
+        "Corporate Law",
+      ],
+      icon: <FaGavel />,
+    },
   };
 
   const scrollSubjects = (direction) => {
     if (subjectsContainerRef.current) {
-      const scrollAmount = direction === "left" ? -200 : 200;
+      const scrollAmount = direction === "left" ? -300 : 300;
       const start = subjectsContainerRef.current.scrollLeft;
       const end = start + scrollAmount;
       const duration = 500;
@@ -163,6 +168,28 @@ const SelectSub = () => {
       requestAnimationFrame(animateScroll);
     }
   };
+
+  useEffect(() => {
+    setSelectedTopic("");
+  }, [selectedSubject]);
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage] = useState(8);
+
+  const subject = selectedSubject || '';
+  const topic = selectedTopic || '';
+  const { Lessons, isLoading, isError } = useAllLessons(
+    subject,
+    topic,
+    currentPage,
+    itemsPerPage
+  );
+  
+  useEffect(() => {
+    if (Lessons) {
+      dispatch(setLessons(Lessons.result || []));
+    }
+  }, [Lessons, dispatch]);
 
   return (
     <div>
@@ -206,9 +233,20 @@ const SelectSub = () => {
             <div className="">
               {subjects[selectedSubject].topics.length > 0 ? (
                 <div className="flex gap-3 text-lg justify-center flex-wrap ">
-                 
                   {subjects[selectedSubject].topics.map((topic, index) => (
-                    <p className="bg-gray-200 px-7 text-center py-2 font-[500] rounded-3xl" key={index}>{topic}</p>
+                    <p key={index}>
+                      <button
+                        key={index}
+                        onClick={() => setSelectedTopic(topic)}
+                        className={`bg-gray-200 px-7 text-center py-2 font-[500] rounded-3xl hover:bg-gray-300 ${
+                          selectedTopic === topic
+                            ? "bg-gray-400 text-white"
+                            : ""
+                        }`}
+                      >
+                        {topic}
+                      </button>
+                    </p>
                   ))}
                 </div>
               ) : (
@@ -217,10 +255,18 @@ const SelectSub = () => {
             </div>
           ) : (
             <div className="flex gap-3 text-lg justify-center flex-wrap">
-              {/* If no subject is selected, show topics of the first subject */}
-             
               {subjects[Object.keys(subjects)[0]].topics.map((topic, index) => (
-                <p className="bg-gray-200 px-7 text-center py-2 font-[500] rounded-3xl" key={index}>{topic}</p>
+                <p key={index}>
+                  <button
+                    key={index}
+                    onClick={() => setSelectedTopic(topic)}
+                    className={`bg-gray-200 px-7 text-center py-2 font-[500] rounded-3xl hover:bg-gray-300 ${
+                      selectedTopic === topic ? "bg-gray-400 text-white" : ""
+                    }`}
+                  >
+                    {topic}
+                  </button>
+                </p>
               ))}
             </div>
           )}

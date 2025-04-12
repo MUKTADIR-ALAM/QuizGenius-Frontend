@@ -8,7 +8,7 @@ const MainLayout = () => {
   return (
     <div>
       <div className="font-inter relative">
-        {/* <EidFireWorks></EidFireWorks> */}
+        <EidFireWorks></EidFireWorks>
         <div>
           <EidQuizGame></EidQuizGame>
         </div>

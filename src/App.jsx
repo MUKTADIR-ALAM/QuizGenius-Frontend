@@ -9,11 +9,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // Create a client
 import ContactUs from "./Pages/Contact us/ContactUs";
-
 import LessonPage from "./Pages/Lesson/LessonPage";
 import QuizPage from "./Pages/Quiz/QuizPage";
 import LessonDetails from "./Pages/LessonDetails/LessonDetails";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import Quizzes from "./components/Quizzes";
 import Leaderboard from "./Pages/Leaderboard/Leaderboard";
 
 const queryClient = new QueryClient();
@@ -33,6 +33,7 @@ function App() {
           <Route path="/lesson/:id" element={<LessonDetails />} />
           <Route path="/quiz-page" element={<QuizPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/give-quiz" element={<Quizzes />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
         </Route>
       </Routes>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 
-// Full question bank
 const allQuestions = [
   {
     question:
@@ -143,7 +142,6 @@ const allQuestions = [
   },
 ];
 
-// Function to shuffle the questions and get 5 random ones
 const getRandomQuestions = () => {
   const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, 5);
@@ -159,9 +157,6 @@ const EidQuizGame = () => {
   const { width, height } = useWindowSize();
 
   useEffect(() => {
-    // Start fading out after 4 seconds (before fully stopping at 6s)
-
-    // Stop fireworks completely after fade-out (6s)
     const stopTimer = setTimeout(() => {
       setShowFireworks(false);
     }, 10000);
@@ -187,8 +182,6 @@ const EidQuizGame = () => {
       setTimeout(() => setShowFireworks(false), 5000);
     }
   };
-  console.log(score)
-
   return (
     <div className="text-center flex z-[10000] flex-col justify-center items-center pt-4">
       {showFireworks &&  (
@@ -205,7 +198,7 @@ const EidQuizGame = () => {
         <button
           className="buttons animate-bounce"
           onClick={() => {
-            setQuizQuestions(getRandomQuestions()); // Shuffle questions when starting
+            setQuizQuestions(getRandomQuestions()); 
             setShowQuestions(true);
           }}
         >
@@ -214,7 +207,7 @@ const EidQuizGame = () => {
       ) : showResult ? (
         <div className="py-4">
           <h3 className="text-lg font-bold">Quiz Completed!</h3>
-          <p className="text-green-600">
+          <p className="text-black">
             Your Score: {score} / {quizQuestions.length}
           </p>
           <button
@@ -225,23 +218,23 @@ const EidQuizGame = () => {
               setShowResult(false);
               setShowFireworks(false);
               setShowQuestions(false);
-              setQuizQuestions(getRandomQuestions()); // Reset questions
+              setQuizQuestions(getRandomQuestions()); 
             }}
           >
             Restart Quiz
           </button>
         </div>
       ) : (
-        <dialog open={showQuestions} className="modal modal-open">
+        <dialog open={showQuestions} className="modal fixed bg-gra p-4 pt-6">
           <div className="modal-box">
             <h3 className="text-lg font-bold">
               {quizQuestions[currentQuestion].question}
             </h3>
-            <div className="mt-4 space-y-2">
+            <div className="mt-4 space-y-2 w-sm mx-auto px-4">
               {quizQuestions[currentQuestion].options.map((option) => (
                 <button
                   key={option}
-                  className="btn btn-outline w-full"
+                  className="btn btn-outline border-gray-200 w-full"
                   onClick={() => handleAnswer(option)}
                 >
                   {option}

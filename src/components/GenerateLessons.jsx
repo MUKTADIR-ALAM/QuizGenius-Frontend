@@ -17,17 +17,18 @@ import { PiMathOperationsBold } from "react-icons/pi";
 import { useDispatch } from "react-redux";
 import { setLessons } from "../redux/LessonSlice";
 import axios from "axios";
+import useAllLessons from "../CustomHook/useAllLessons";
+
 
 const GenerateLessons = () => {
   const [selectedSubject, setSelectedSubject] = useState("");
   const [topics, setTopics] = useState("");
   const [subTopics, setSubTopics] = useState("");
-  //   const [formData, setFormData] = useState(null);
   const [levelOfQuestions, setLevelOfQuestions] = useState("beginner");
   const levels = ["beginner", "intermediate", "hard"];
   const dispatch = useDispatch();
   const subjects = {
-    Math: {
+    Mathematics: {
       topics: [
         "Algebra",
         "Geometry",
@@ -140,22 +141,17 @@ const GenerateLessons = () => {
     },
   };
 
-  useEffect(() => {
-   
-    const fetchLessons = async () => {
-      try {
-        const res = await axios.get("https://quiz-genius-backend.vercel.app/lessons");
-        dispatch(setLessons(res.data));
-      } catch (error) {
-        console.error("Error fetching lessons:", error);
-      }
-    };
-    fetchLessons();
-  }, [dispatch]);
+const { Lessons } = useAllLessons();
+
+useEffect(() => {
+  if (Lessons) {
+    dispatch(setLessons(Lessons.result)); 
+  }
+}, [Lessons, dispatch]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newFormData = {
       selectedSubject,
       topics,
@@ -168,7 +164,17 @@ const GenerateLessons = () => {
         "https://quiz-genius-backend.vercel.app/lessons",
         newFormData
       );
-      console.log("Lesson generated:", response.data);
+      if(response){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        return
+      }
+     
     } catch (error) {
       console.error("Error fetching lessons:", error);
     }
