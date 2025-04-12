@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { NavLink } from 'react-router';
+import { AuthContext } from '../../provider/AuthProvider';
 
 export default function Dashboard() {
+  const { user } = useContext(AuthContext);
 
       // Mock data
   const userProfile = {
     name: "Alex Turing",
     email: "alex@quizgenius.com",
     avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    plan: "Premium",
+    plan: "Basic",
     quizzesContributed: 24,
     lastActive: "2 hours ago",
   };
@@ -58,12 +61,12 @@ export default function Dashboard() {
               <div className="flex items-center mb-6">
                 <div className="avatar mr-4">
                   <div className="w-16 rounded-full">
-                    <img src={userProfile.avatar} alt={userProfile.name} />
+                    <img src={user?.photoURL} alt={userProfile.name} referrerPolicy="no-referrer" />
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold">{userProfile.name}</h2>
-                  <p className="">{userProfile.email}</p>
+                  <h2 className="text-xl font-bold">{user?.displayName}</h2>
+                  <p className="">{user?.email}</p>
                 </div>
               </div>
               <div className="space-y-4">
@@ -79,7 +82,7 @@ export default function Dashboard() {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="">Quizzes Contributed</span>
+                  <span className="">Quizzes Created</span>
                   <span className="font-bold">{userProfile.quizzesContributed}</span>
                 </div>
                 <div className="flex justify-between">
@@ -150,18 +153,18 @@ export default function Dashboard() {
                 <p className="text-gray-400 mb-4">
                   Craft an AI-powered quiz in minutes.
                 </p>
-                <button className="btn btn-block bg-white text-black hover:bg-gray-200">
+                <NavLink to={'/quiz-page'} className="btn btn-block bg-white text-black hover:bg-gray-200">
                   Start Creating
-                </button>
+                </NavLink>
               </div>
               <div className=" bg-opacity-5 p-6 rounded-lg border border-gray-800">
                 <h3 className="text-lg font-bold mb-4">Performance Analytics</h3>
                 <p className="text-gray-400 mb-4">
                   Dive deep into your quiz statistics.
                 </p>
-                <button className="btn btn-block bg-transparent border-black">
-                  View Analytics
-                </button>
+                <NavLink to={'/leaderboard'} className="btn btn-block bg-transparent border-black">
+                  View Leaderboard
+                </NavLink>
               </div>
             </div>
           </div>

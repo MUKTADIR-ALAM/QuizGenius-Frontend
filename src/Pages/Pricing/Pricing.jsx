@@ -39,7 +39,7 @@ export default function Pricing() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Free Plan Card */}
           <div className="bg-gray-200 text-black p-8 rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
-            <h2 className="text-2xl font-bold mb-4">Free</h2>
+            <h2 className="text-2xl font-bold mb-4">Basic</h2>
             <p className="text-gray-600 mb-6">Perfect for getting started</p>
             <p className="text-4xl font-bold mb-6">
               $0<span className="text-lg">/mo</span>

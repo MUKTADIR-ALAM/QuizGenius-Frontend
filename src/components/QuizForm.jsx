@@ -162,16 +162,18 @@ const QuizForm = () => {
     setFormData(newFormData);
 
     try {
-      const res = await axios.get("http://localhost:5000/quizzes", {
-        params: newFormData,
-      });
+      const res = await axios.get(
+        "https://quiz-genius-backend.vercel.app/quizzes",
+        {
+          params: newFormData,
+        }
+      );
       dispatch(setQuestions(res.data));
     } catch (error) {
       console.error("Error fetching quiz questions:", error);
     }
   
   };
-
 
   return (
     <div
@@ -216,7 +218,7 @@ const QuizForm = () => {
                 value={selectedTopic}
                 onChange={(e) => {
                   setSelectedTopic(e.target.value);
-                  setIsCustomTopic(false); 
+                  setIsCustomTopic(false);
                 }}
               >
                 <option value="">-- Choose Topic --</option>
@@ -225,7 +227,9 @@ const QuizForm = () => {
                     {topic}
                   </option>
                 ))}
-                <option disabled={!setCustomTopic} value="custom">-- Add Custom Topic --</option>
+                <option disabled={!setCustomTopic} value="custom">
+                  -- Add Custom Topic --
+                </option>
               </select>
             </>
           )}
@@ -234,7 +238,6 @@ const QuizForm = () => {
             <input
               type="text"
               placeholder="Enter your custom topic"
-             
               className="input mb-4 w-full"
               value={customTopic}
               onChange={(e) => setCustomTopic(e.target.value)}
