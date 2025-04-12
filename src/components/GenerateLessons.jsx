@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { setLessons } from "../redux/LessonSlice";
 import axios from "axios";
 import useAllLessons from "../CustomHook/useAllLessons";
+import toast from "react-hot-toast";
 
 
 const GenerateLessons = () => {
@@ -164,14 +165,9 @@ useEffect(() => {
         "https://quiz-genius-backend.vercel.app/lessons",
         newFormData
       );
+      console(response);
       if(response){
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Your work has been saved",
-          showConfirmButton: false,
-          timer: 1500
-        });
+       toast.success("form submitted successfully")
         return
       }
      

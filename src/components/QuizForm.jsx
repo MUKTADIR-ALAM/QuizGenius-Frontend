@@ -15,8 +15,8 @@ import {
   FaGavel,
 } from "react-icons/fa";
 import { setQuestions } from "../redux/quizSlice";
-import axios from "axios";
 import { useDispatch } from "react-redux";
+import useAxiosPublic from "../CustomHook/useAxiosPublic";
 
 const subjects = {
   Math: {
@@ -142,8 +142,7 @@ const QuizForm = () => {
   const [isCustomTopic, setIsCustomTopic] = useState(false);
   const [customSubject, setCustomSubject] = useState("");
   const [customTopic, setCustomTopic] = useState("");
-
-  const [formData, setFormData] = useState(null);
+  const axiosPublic = useAxiosPublic();
 
   const levels = ["beginner", "intermediate", "hard"];
 
@@ -159,20 +158,15 @@ const QuizForm = () => {
       numOfQuestions,
       levelOfQuestions,
     };
-    setFormData(newFormData);
 
     try {
-      const res = await axios.get(
-        "https://quiz-genius-backend.vercel.app/quizzes",
-        {
-          params: newFormData,
-        }
-      );
+      const res = await axiosPublic.get("/quizzes", {
+        params: newFormData,
+      });
       dispatch(setQuestions(res.data));
     } catch (error) {
       console.error("Error fetching quiz questions:", error);
     }
-  
   };
 
   return (

@@ -11,10 +11,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import {  doc, getDoc, updateDoc, setDoc, Timestamp } from "firebase/firestore";
+import useAxiosPublic from "../CustomHook/useAxiosPublic";
 
 export const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
+  const axiosPublic = useAxiosPublic()
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [lockError, setLockError] = useState("");
@@ -115,10 +117,37 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      if (currentUser?.email) {
+        const user = { email: currentUser.email };
+        axiosPublic
+          .post("/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+           console.log("Authentication success")
+          })
+          .catch((error) => {
+            console.error("JWT fetch error");
+          })
+          .finally(() => setLoading(false));
+      } else {
+        axiosPublic
+          .post(
+            "/logout",
+            {},
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log(res)
+          })
+          .catch((error) => {
+            console.error("Logout error");
+          })
+          .finally(() => setLoading(false));
+      }
     });
     return () => unSubscribe();
-  }, []);
+  }, [axiosPublic]);
 
   const authInfo = {
     user,
