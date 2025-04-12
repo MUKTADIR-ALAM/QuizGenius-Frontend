@@ -22,19 +22,21 @@ const LessonSection = () => {
   );
 
   useEffect(() => {
-    if (!isLoading && Lessons) {
+    if (Lessons?.result) {
       dispatch(setLessons(Lessons.result));
     }
-  }, [Lessons, dispatch, isLoading]);
-  
-  const numberOfPages = Math.ceil(Lessons?.count / itemsPerPage) || 8;
+  }, [Lessons, dispatch]);
+
+  const numberOfPages = Math.ceil((Lessons?.count || 0) / itemsPerPage);
 
   return (
     <div className="flex flex-col justify-center ">
-      <div className="grid justify-center items-center lg:max-w-7xl mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6  p-6 ">
-      {isLoading ? (
-          <h2 className="text-center text-lg font-semibold col-span-full"><Loader></Loader></h2>
-        ) : topicsR && topicsR.length > 0 ? (
+      <div className="grid justify-center items-center lg:max-w-7xl mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 p-6">
+        {isLoading ? (
+          <h2 className="text-center text-lg font-semibold col-span-full">
+            <Loader />
+          </h2>
+        ) : topicsR?.length > 0 ? (
           topicsR.map((lesson, index) => (
             <div
               key={index}
@@ -49,7 +51,6 @@ const LessonSection = () => {
               <p className="text-lg text-gray-600 mb-4">
                 {lesson.introduction.slice(0, 130)}...
               </p>
-
               <Link
                 to={`/lesson/${lesson._id}`}
                 className="flex justify-center items-center gap-2 hover:text-xl"

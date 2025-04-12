@@ -5,6 +5,8 @@ import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+  const isAdmin = true;
+  const isMember = false;
   const links = (
     <>
       <li>
@@ -19,9 +21,21 @@ const Navbar = () => {
       <li>
         <NavLink to="/pricing">Pricing</NavLink>
       </li>
-      {user && (<li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-      </li>)}
+      {user && (
+        <li>
+          <NavLink to="/dashboard/user">Dashboard</NavLink>
+        </li>
+      )}
+      {isAdmin && (
+        <li>
+          <NavLink to="/dashboard/admin">Dashboard</NavLink>
+        </li>
+      )}
+      {isMember && (
+        <li>
+          <NavLink to="/dashboard/member">Dashboard</NavLink>
+        </li>
+      )}
       <li>
         <NavLink to="/lesson">Lessons</NavLink>
       </li>
@@ -30,6 +44,7 @@ const Navbar = () => {
       </li>
     </>
   );
+
   return (
     <div className="navbar z-[100] bg-base-100 shadow-sm px-6">
       <div className="navbar-start">
@@ -72,7 +87,11 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full">
-                <img referrerPolicy="no-referrer" alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                <img
+                  referrerPolicy="no-referrer"
+                  alt="Tailwind CSS Navbar component"
+                  src={user?.photoURL}
+                />
               </div>
             </div>
 
