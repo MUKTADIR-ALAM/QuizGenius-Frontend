@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setQuestions } from "../redux/quizSlice";
+import { setQuestions } from "../../../redux/quizSlice";
 import { useNavigate } from "react-router";
 
 const UploadPdf = () => {

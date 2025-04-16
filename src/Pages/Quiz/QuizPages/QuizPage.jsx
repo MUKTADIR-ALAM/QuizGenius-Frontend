@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import QuizForm from "../../../components/QuizForm";
-
 import Quizzes from "../../../components/Quizzes";
 import { useSelector } from "react-redux";
-import UploadPdf from "../../../components/UploadPdf";
+import UploadPdf from "../quiz-Components/UploadPdf";
 import { useNavigate } from "react-router";
+import QuizForm from "../quiz-Components/QuizForm";
+import InsertLink from "../quiz-Components/InsertLink";
 
 const QuizPage = () => {
   const { questions } = useSelector((state) => state.quiz);
   const [view, setView] = useState("form");
   const navigate = useNavigate();
+
+  console.log(view);
 
   useEffect(() => {
     if (questions.length > 0) {
@@ -46,11 +48,25 @@ const QuizPage = () => {
           >
             Upload PDF
           </button>
+          <button
+            onClick={() => setView("insert-link")}
+            className={`px-4 py-2 rounded ${
+              view === "insert-link" ? "bg-black text-white" : "bg-gray-200"
+            }`}
+          >
+            Insert Link
+          </button>
         </div>
 
         {/* Conditional Component Rendering */}
         <div className="border border-gray-300 p-4 rounded-lg max-w-2xl mx-auto">
-          {view === "form" ? <QuizForm /> : <UploadPdf />}
+          {view === "form" ? (
+            <QuizForm />
+          ) : view === "insert-link" ? (
+            <InsertLink />
+          ) : (
+            <UploadPdf />
+          )}
         </div>
       </div>
     </>

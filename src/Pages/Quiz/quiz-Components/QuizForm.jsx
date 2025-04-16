@@ -14,9 +14,9 @@ import {
   FaWrench,
   FaGavel,
 } from "react-icons/fa";
-import { setQuestions } from "../redux/quizSlice";
 import { useDispatch } from "react-redux";
-import useAxiosPublic from "../CustomHook/useAxiosPublic";
+import { setQuestions } from "../../../redux/quizSlice";
+import useAxiosPublic from "../../../CustomHook/useAxiosPublic"
 
 const subjects = {
   Math: {
@@ -142,7 +142,7 @@ const QuizForm = () => {
   const [isCustomTopic, setIsCustomTopic] = useState(false);
   const [customSubject, setCustomSubject] = useState("");
   const [customTopic, setCustomTopic] = useState("");
-  const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic()
 
   const levels = ["beginner", "intermediate", "hard"];
 

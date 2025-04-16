@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectAnswer, nextQuestion } from "../redux/quizSlice";
 import { useState } from "react";
+import { selectAnswer, nextQuestion } from "../redux/quizSlice";
 
 const Quizzes = () => {
   const dispatch = useDispatch();
@@ -33,10 +33,11 @@ const Quizzes = () => {
   };
 
   const getButtonClass = (option) => {
-    if (!selectedOption) return "btn bg-gray-200"; 
-    if (option === selectedOption) return "btn bg-gray-400 text-white"; 
+    if (!selectedOption) return "btn bg-gray-200 w-full lg:w-72 h-16 lg:h-20";
+    if (option === selectedOption)
+      return "btn bg-gray-400 text-white w-full lg:w-72 h-16 lg:h-20";
 
-    return "btn opacity-80 bg-gray-200 hover:bg-gray-300"; 
+    return "btn opacity-80 bg-gray-200 hover:bg-gray-300 w-full lg:w-72 h-16 lg:h-20";
   };
 
   const handleNext = () => {
@@ -45,17 +46,18 @@ const Quizzes = () => {
   };
 
   return (
-    <div className="my-12 fixed h-screen w-screen mx-auto">
+    <div className="mt-8 mb-12 fixed h-screen w-screen mx-auto">
       <h2 className="text-3xl font-bold text-center mt-12">Quizzes</h2>
       <div className="card max-w-lg mx-auto py-8">
-        <h2 className="pt-2 pb-6 text-lg md:text-xl">{currentQuestion.question}</h2>
-        <div className="grid md:grid-cols-2 gap-4 mt-2 mb-4">
+        <h2 className="pt-2 pb-6 text-lg md:text-xl">
+          {currentQuestion.question}
+        </h2>
+        <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-4 mt-2 mb-4">
           {currentQuestion.options.map((option) => (
             <button
               key={option}
               className={getButtonClass(option)}
               onClick={() => handleSelect(option)}
-              
             >
               {option}
             </button>
